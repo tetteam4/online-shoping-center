@@ -9,7 +9,7 @@ const Header = () => {
   const [isClick, setIsClick] = useState(false);
   const [cardItems, setCardItems] = useState(0);
   return (
-    <header className="bg-white  p-6">
+    <header className="bg-white fixed z-40 p-6 top-0 left-0 right-0">
       <div className="container mx-auto grid grid-cols-2">
         {/* Logo */}
         <div className="flex items-center gap-x-4  justify-between">
@@ -70,7 +70,6 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <Navbar />
     </header>
   );
 };
