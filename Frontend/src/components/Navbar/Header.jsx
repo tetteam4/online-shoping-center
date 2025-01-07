@@ -1,60 +1,76 @@
-import React from "react";
+import React, { useState } from "react";
+import { IoSearch } from "react-icons/io5";
+import { TfiShoppingCart } from "react-icons/tfi";
+import { GoSignIn } from "react-icons/go";
+import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const Header = () => {
+  const [isClick, setIsClick] = useState(false);
+  const [cardItems, setCardItems] = useState(0);
   return (
     <header className="bg-white  p-6">
       <div className="container mx-auto grid grid-cols-2">
         {/* Logo */}
-        <div className="flex items-center  justify-between">
-          <div className="text-3xl  font-bold text-blue-500">
+        <div className="flex items-center gap-x-4  justify-between">
+          <div className="text-3xl  font-bold  text-red-600">
             <a href="/">فروشگاه آنلاین</a>
           </div>
 
           {/* Search Bar */}
-          <div className="flex-1 mx-4">
+          <div className="flex-1 mx-4 relative">
             <input
               type="text"
-              placeholder="Search for items..."
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              onClick={() => setIsClick(!isClick)}
+              placeholder="جستجو ..."
+              className="w-full py-2 border px-10 border-gray-300 bg-gray-200 rounded-lg focus:outline-none "
             />
+            <span
+              className={`absolute top-3 text-xl  text-gray-500 right-4  ${
+                isClick ? "hidden" : ""
+              }`}
+            >
+              <IoSearch />
+            </span>
+            {isClick && (
+              <div className="absolute top-12 right-0 w-full h-[300px] bg-gray-100 border border-gray-600 rounded-lg"></div>
+            )}
           </div>
         </div>
 
         <div className="flex items-center justify-end gap-x-5">
           {/* Sign In / Sign Up Buttons */}
-          <div className="grid grid-cols-2 space-x-4">
-            <button className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
-              Sign In
-            </button>
-            <button className="px-4 py-2 text-sm font-medium text-blue-500 border border-blue-500 rounded-lg hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-400">
-              Sign Up
-            </button>
+          <div className="flex items-center bg-gray-50 hover:bg-gray-100 rounded-lg border p-2 ">
+            <span><GoSignIn className="" size={20} /></span>
+            <Link
+              to="/signup
+            "
+              className="px-2  text-sm font-semibold "
+            >
+              ورود
+            </Link>
+            <Link
+              to="/signin"
+              className="px-2 border-r-2 border-black text-sm font-semibold "
+            >
+              ثبت نام
+            </Link>
           </div>
 
           {/* Cart Icon */}
           <div className="relative ml-4">
-            <button className="text-gray-600 hover:text-blue-500 focus:outline-none">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 7M7 13l-1 5m1-5h10m0 0l1 5M10 21a1 1 0 102 0m4-16V3m-8 2V3"
-                />
-              </svg>
-            </button>
-            <span className="absolute -top-2 -right-2 px-2 py-1 text-xs text-white bg-red-500 rounded-full">
-              3
-            </span>
+            <Link to="/card" className="text-gray-600 hover:text-blue-500 focus:outline-none">
+              <TfiShoppingCart size={30} />
+            </Link>
+            {cardItems > 0 && (
+              <span className="absolute -top-2 -right-2 px-1.5 flex items-center justify-center py-0.5 text-xs text-white bg-red-500 rounded-full">
+                3
+              </span>
+            )}
           </div>
         </div>
       </div>
+      <Navbar />
     </header>
   );
 };
