@@ -11,6 +11,7 @@ const FashionNavbar = () => {
 
   return (
     <nav className="bg-gray-800 text-white">
+   
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="text-2xl font-bold">
