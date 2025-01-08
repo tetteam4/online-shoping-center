@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { TfiShoppingCart } from "react-icons/tfi";
 import { GoSignIn } from "react-icons/go";
+import { TbLogin } from "react-icons/tb";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 
@@ -41,7 +42,7 @@ const Header = () => {
         <div className="flex items-center justify-end gap-x-5">
           {/* Sign In / Sign Up Buttons */}
           <div className="flex items-center bg-gray-50 hover:bg-gray-100 rounded-lg border p-2 ">
-            <span><GoSignIn className="" size={20} /></span>
+            <span><TbLogin className="text-gray-700" size={24} /></span>
             <Link
               to="/signup
             "
