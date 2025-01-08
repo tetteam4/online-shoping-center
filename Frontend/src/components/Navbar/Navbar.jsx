@@ -51,6 +51,15 @@ const Navbar = () => {
     { to: "/sale", label: "حراج", icon: <FaChild /> },
   ];
 
+  // Prevent page scrolling when category is open
+  useEffect(() => {
+    if (showCategory) {
+      document.body.style.overflow = "hidden"; // Disable scroll
+    } else {
+      document.body.style.overflow = "auto"; // Enable scroll
+    }
+  }, [showCategory]);
+
   return (
     <nav
       className={`w-full z-30 transition-all border-t duration-500 ${
@@ -89,18 +98,10 @@ const Navbar = () => {
             {/* Categories Component */}
             {showCategory && (
               <div
-                className="absolute top-full w-[1000px] bg-gray-100 overflow-y-scroll h-[550px] border z-50"
-                style={{
-                  direction: "ltr",
-                }}
+                className="absolute top-full right-0 w-[1000px] overflow-y-scroll bg-gray-200  h-[550px] border z-50"
+              
               >
-                <div
-                  style={{
-                    direction: "rtl",
-                  }}
-                >
-                  <Category />
-                </div>
+                <Category />
               </div>
             )}
           </div>
