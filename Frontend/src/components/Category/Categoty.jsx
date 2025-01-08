@@ -1,92 +1,98 @@
 import React, { useState, useEffect } from "react";
 import MainCategory from "./MainCategory";
 import SubCategories from "./SubCategories";
+import { FaMale, FaFemale, FaBabyCarriage, FaRegHandshake, FaBook, FaCouch, FaMobileAlt, FaDumbbell, FaPerfume } from 'react-icons/fa';
 
 const Category = () => {
     const categories = [
         {
-          name: "Men's Fashion",
-          subcategories: ["Shirts", "Pants", "Shoes", "Accessories"],
+          name: "مد و پوشاک مردانه",
+          subcategories: ["پیراهن", "شلوار", "کفش", "لوازم جانبی"],
         },
         {
-          name: "Women's Fashion",
-          subcategories: ["Dresses", "Tops", "Skirts", "Handbags"],
+          name: "مد و پوشاک زنانه",
+          subcategories: ["لباس", "تاپ", "دامن", "کیف دستی"],
         },
         {
-          name: "Kids' Fashion",
+          name: "مد و پوشاک بچگانه",
           subcategories: [
-            "T-Shirts",
-            "Shorts",
-            "Sneakers",
-            "Hats",
-            "Shirts",
-            "Pants",
-            "Shoes",
-            "Accessories",
+            "تی‌شرت",
+            "شلوارک",
+            "کفش ورزشی",
+            "کلاه",
+            "پیراهن",
+            "شلوار",
+            "کفش",
+            "لوازم جانبی",
           ],
         },
         {
-          name: "Accessories",
-          subcategories: ["Watches", "Jewelry", "Belts", "Sunglasses"],
+          name: "لوازم جانبی",
+          subcategories: ["ساعت", "جواهرات", "کمربند", "عینک آفتابی"],
         },
         {
-          name: "Men's Fashion",
-          subcategories: ["Shirts", "Pants", "Shoes", "Accessories"],
+          name: "کتاب و لوازم تحریر",
+          subcategories: ["کتاب‌های آموزشی", "دفتر", "مداد", "پاک‌کن"],
         },
         {
-          name: "Women's Fashion",
-          subcategories: ["Dresses", "Tops", "Skirts", "Handbags"],
+          name: "لوازم خانه",
+          subcategories: ["مبلمان", "چراغ", "دکوراسیون", "فرش"],
         },
         {
-          name: "Kids' Fashion",
-          subcategories: ["T-Shirts", "Shorts", "Sneakers", "Hats"],
+          name: "الکترونیک و فناوری",
+          subcategories: ["گوشی موبایل", "لپ‌تاپ", "دوربین", "هدست"],
         },
         {
-          name: "Accessories",
-          subcategories: ["Watches", "Jewelry", "Belts", "Sunglasses"],
+          name: "ورزش و تناسب اندام",
+          subcategories: ["لباس ورزشی", "کفش ورزشی", "دستگاه‌های ورزشی", "دستکش ورزشی"],
         },
         {
-          name: "Men's Fashion",
-          subcategories: ["Shirts", "Pants", "Shoes", "Accessories"],
+          name: "عطر و لوازم آرایشی",
+          subcategories: ["عطر", "کرم صورت", "لوازم آرایش", "شامپو"],
         },
         {
-          name: "Women's Fashion",
-          subcategories: ["Dresses", "Tops", "Skirts", "Handbags"],
+          name: "مد و پوشاک مردانه",
+          subcategories: ["پیراهن", "شلوار", "کفش", "لوازم جانبی"],
         },
         {
-          name: "Kids' Fashion",
+          name: "مد و پوشاک زنانه",
+          subcategories: ["لباس", "تاپ", "دامن", "کیف دستی"],
+        },
+        {
+          name: "مد و پوشاک بچگانه",
           subcategories: [
-            "T-Shirts",
-            "Shorts",
-            "Sneakers",
-            "Hats",
-            "Shirts",
-            "Pants",
-            "Shoes",
-            "Accessories",
+            "تی‌شرت",
+            "شلوارک",
+            "کفش ورزشی",
+            "کلاه",
+            "پیراهن",
+            "شلوار",
+            "کفش",
+            "لوازم جانبی",
           ],
         },
         {
-          name: "Accessories",
-          subcategories: ["Watches", "Jewelry", "Belts", "Sunglasses"],
+          name: "لوازم جانبی",
+          subcategories: ["ساعت", "جواهرات", "کمربند", "عینک آفتابی"],
         },
         {
-          name: "Men's Fashion",
-          subcategories: ["Shirts", "Pants", "Shoes", "Accessories"],
+          name: "کتاب و لوازم تحریر",
+          subcategories: ["کتاب‌های آموزشی", "دفتر", "مداد", "پاک‌کن"],
         },
         {
-          name: "Women's Fashion",
-          subcategories: ["Dresses", "Tops", "Skirts", "Handbags"],
+          name: "لوازم خانه",
+          subcategories: ["مبلمان", "چراغ", "دکوراسیون", "فرش"],
         },
         {
-          name: "Kids' Fashion",
-          subcategories: ["T-Shirts", "Shorts", "Sneakers", "Hats"],
+          name: "الکترونیک و فناوری",
+          subcategories: ["گوشی موبایل", "لپ‌تاپ", "دوربین", "هدست"],
         },
         {
-          name: "Accessories",
-          subcategories: ["Watches", "Jewelry", "Belts", "Sunglasses"],
+          name: "ورزش و تناسب اندام",
+          subcategories: ["لباس ورزشی", "کفش ورزشی", "دستگاه‌های ورزشی", "دستکش ورزشی"],
         },
       ];
+      
   const [hoveredCategory, setHoveredCategory] = useState(null);
 
   const handleMouseEnter = (category) => {
@@ -106,7 +112,7 @@ const Category = () => {
         style={{
           direction: "ltr",
         }}
-        className="w-1/3 h-full overflow-y-scroll"
+        className="w-[25%] h-full "
       >
         <MainCategory
           categories={categories}
@@ -116,7 +122,7 @@ const Category = () => {
       </div>
 
       {/* Subcategories List */}
-      <div className="w-2/3 overflow-y-scroll">
+      <div className="w-[75%] ">
         {hoveredCategory && (
           <SubCategories subcategories={hoveredCategory.subcategories} hoveredCategory={hoveredCategory} />
         )}

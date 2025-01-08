@@ -98,10 +98,16 @@ const Navbar = () => {
             {/* Categories Component */}
             {showCategory && (
               <div
-                className="absolute top-full right-0 w-[1000px] overflow-y-scroll bg-gray-200  h-[550px] border z-50"
-              
+                className="absolute top-full border-gray-200 right-0 w-[1000px] overflow-y-scroll bg-gray-100  h-[550px] border z-50"
+                style={{
+                  direction: "ltr",
+                }}
               >
-                <Category />
+                <div  style={{
+                  direction: "rtl",
+                }} >
+                <Category  />
+                </div>
               </div>
             )}
           </div>
