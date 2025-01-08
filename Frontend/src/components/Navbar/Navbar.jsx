@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { MdMenu, MdClose } from "react-icons/md";
-import { FaMale, FaFemale, FaChild } from "react-icons/fa"; // Example icons for each item
+import { FaMale, FaFemale, FaChild } from "react-icons/fa";
 import { TfiMenuAlt } from "react-icons/tfi";
+import Category from "../Category/Categoty";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [showCategory, setShowCategory] = useState(false);
 
+  // Toggle mobile menu
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
   };
@@ -24,7 +28,19 @@ const Navbar = () => {
     };
   }, []);
 
-  // List of navbar items with icons
+  // Handle delayed hover effect
+  useEffect(() => {
+    let timeout;
+    if (isHovered) {
+      timeout = setTimeout(() => setShowCategory(true), 300); // 300ms delay
+    } else {
+      timeout = setTimeout(() => setShowCategory(false), 300); // 300ms delay
+    }
+
+    return () => clearTimeout(timeout); // Cleanup timeout
+  }, [isHovered]);
+
+  // List of navbar items
   const navItems = [
     { to: "/men", label: "مد فشن مردانه", icon: <FaMale /> },
     { to: "/women", label: "مد فشن زنانه", icon: <FaFemale /> },
@@ -37,14 +53,14 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`w-full z-30 transition-all border-t  duration-500 ${
+      className={`w-full z-30 transition-all border-t duration-500 ${
         isScrolled
-          ? "sticky top-20 bg-white border-t border-b-2  border-gray-800 shadow-md"
+          ? "sticky top-20 bg-white border-b-2 border-gray-800 shadow-md"
           : "fixed top-20 bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        {/* Menu Button for Mobile */}
+        {/* Mobile Menu Button */}
         <div className="lg:hidden">
           <button onClick={toggleMenu} className="focus:outline-none text-3xl">
             {menuOpen ? <MdClose /> : <MdMenu />}
@@ -53,16 +69,43 @@ const Navbar = () => {
 
         {/* Navbar Links */}
         <div
-          className={`absolute lg:static top-0 left-0 w-full lg:w-auto lg:flex lg:bg-transparent lg:translate-x-0 transform ${
+          className={`absolute lg:static -top-2 left-0 w lg:w-auto lg:flex lg:bg-transparent lg:translate-x-0 transform ${
             menuOpen ? "translate-x-0" : "-translate-x-full"
           } transition-transform duration-300 lg:items-center`}
         >
-          <div className="flex items-center border-l-2 border-gray-400 ml-5 pl-5 font-semibold gap-x-2 cursor-pointer text-gray-780">
-            <span>
-              <TfiMenuAlt size={18} />
-            </span>
-            <p>دسته‌بندی کالاها</p>
+          {/* دسته‌بندی کالاها Section */}
+          <div
+            className="relative"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            <div className="flex items-center border-l-2 border-gray-400 ml-5 pl-5 font-semibold gap-x-2 cursor-pointer text-gray-780">
+              <span>
+                <TfiMenuAlt size={18} />
+              </span>
+              <p>دسته‌بندی کالاها</p>
+            </div>
+
+            {/* Categories Component */}
+            {showCategory && (
+              <div
+                className="absolute top-full w-[1000px] bg-gray-100 overflow-y-scroll h-[550px] border z-50"
+                style={{
+                  direction: "ltr",
+                }}
+              >
+                <div
+                  style={{
+                    direction: "rtl",
+                  }}
+                >
+                  <Category />
+                </div>
+              </div>
+            )}
           </div>
+
+          {/* Navbar Items */}
           <ul className="lg:flex lg:gap-8 lg:p-0 space-y-4 lg:space-y-0">
             {navItems.map((item) => (
               <li key={item.to} className="flex items-center gap-2">
