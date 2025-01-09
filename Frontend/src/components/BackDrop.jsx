@@ -1,12 +1,13 @@
-// Backdrop.js
 import React from "react";
+import ReactDOM from "react-dom";
 
 const Backdrop = ({ onClick }) => {
-  return (
+  return ReactDOM.createPortal(
     <div
-      className="fixed top-0 right-0 bottom-0 left-0 bg-black bg-opacity-70 z-40"
-      onClick={onClick} // Calls the onClick handler passed from the parent to close the backdrop
-    ></div>
+      className="fixed inset-0 bg-black bg-opacity-30 z-20"
+      onClick={onClick}
+    />,
+    document.getElementById("backdrop-root") // Make sure to create this div in your HTML
   );
 };
 

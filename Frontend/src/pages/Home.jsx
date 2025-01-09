@@ -8,7 +8,7 @@ const Home = () => {
       <p className="mt-4 text-gray-600">
         Discover the best deals and products!
       </p>
-      <SliderComponent />
+      {/* <SliderComponent /> */}
     </div>
   );
 };

@@ -1,11 +1,10 @@
-// Navbar.js
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { MdMenu, MdClose } from "react-icons/md";
 import { FaMale, FaFemale, FaChild } from "react-icons/fa";
 import { TfiMenuAlt } from "react-icons/tfi";
 import Category from "../Category/Category";
-import Backdrop from "../BackDrop"; // وارد کردن کامپوننت بک‌دراپ
+import Backdrop from "../BackDrop"; // Import Backdrop component
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -92,7 +91,7 @@ const Navbar = () => {
             {/* Categories Component */}
             {showCategory && (
               <>
-                <Backdrop onClick={() => setShowCategory(false)} /> {/* نمایش بک‌دراپ */}
+                
                 <div
                   className="absolute top-8 border-gray-200 rounded-md right-0 w-[1000px] overflow-y-scroll bg-gray-100 h-[500px] border z-50"
                   style={{
