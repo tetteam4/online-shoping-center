@@ -93,7 +93,7 @@ const Navbar = () => {
               <>
                 
                 <div
-                  className="absolute top-8 border-gray-200 rounded-md right-0 w-[1000px] overflow-y-scroll bg-gray-100 h-[500px] border z-50"
+                  className="absolute top-8 border-gray-200 rounded-md right-0 w-[1000px]  bg-gray-100 h-[500px] border z-50"
                   style={{
                     direction: "ltr",
                   }}

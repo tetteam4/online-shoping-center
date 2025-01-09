@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from "react";
 import MainCategory from "./MainCategory";
 import SubCategories from "./SubCategories";
@@ -8,7 +6,7 @@ const Category = () => {
   const categories = [
     {
       name: "مد و پوشاک مردانه",
-      subcategories: ["پیراهن", "شلوار", "کفش", "لوازم جانبی"],
+      subcategories: ["پیراهن", "شلوار", "کفش", "لوازم جانبی","پیراهن", "شلوار", "کفش", "لوازم جانبی","پیراهن", "شلوار", "کفش", "لوازم جانبی","پیراهن", "شلوار", "کفش", "لوازم جانبی","پیراهن", "شلوار", "کفش", "لوازم جانبی"],
     },
     {
       name: "مد و پوشاک زنانه",
@@ -94,12 +92,14 @@ const Category = () => {
     },
   ];
 
+
+
   const [hoveredCategory, setHoveredCategory] = useState(null);
-  const [isHovered, setIsHovered] = useState(false); // Track if either section is hovered
+  const [isHovered, setIsHovered] = useState(false);
   let hoverTimeout;
 
   const handleMouseEnter = (category) => {
-    clearTimeout(hoverTimeout); // Cancel any pending timeout
+    clearTimeout(hoverTimeout);
     setHoveredCategory(category);
     setIsHovered(true);
   };
@@ -108,20 +108,20 @@ const Category = () => {
     hoverTimeout = setTimeout(() => {
       setHoveredCategory(null);
       setIsHovered(false);
-    }, 300); // Delay closing for 300ms
+    }, 300);
   };
 
   useEffect(() => {
-    return () => clearTimeout(hoverTimeout); // Cleanup timeout on unmount
+    return () => clearTimeout(hoverTimeout);
   }, []);
 
   return (
     <div
-      className="flex max-h-full gap-x-5"
-      onMouseEnter={() => clearTimeout(hoverTimeout)} // Prevent early closing
-      onMouseLeave={handleMouseLeave} // Trigger delayed close
+      className="flex gap-x-5 h-[500px] max-h-full"
+      onMouseEnter={() => clearTimeout(hoverTimeout)}
+      onMouseLeave={handleMouseLeave}
     >
-      {/* Categories List */}
+      {/* Main Categories */}
       <div className="w-[25%] h-full bg-white">
         <MainCategory
           categories={categories}
@@ -130,13 +130,10 @@ const Category = () => {
         />
       </div>
 
-      {/* Subcategories List */}
-      <div className="w-[75%]">
+      {/* Subcategories */}
+      <div className="w-[75%] h-full">
         {isHovered && hoveredCategory && (
-          <SubCategories
-            subcategories={hoveredCategory.subcategories}
-            hoveredCategory={hoveredCategory}
-          />
+          <SubCategories hoveredCategory={hoveredCategory} />
         )}
       </div>
     </div>
