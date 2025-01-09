@@ -2,8 +2,8 @@ import React from 'react'
 
 const MainCategory = ({categories , handleMouseLeave , handleMouseEnter}) => {
   return (
-    <div className='py-4'>
-      <h3 className="text-lg font-semibold px-3">Fashion Categories</h3>
+    <div className=''>
+     
         <ul className="">
           {categories.map((category, index) => (
             <li

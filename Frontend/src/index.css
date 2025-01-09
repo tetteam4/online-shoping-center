@@ -14,3 +14,8 @@
   body {
     font-family: "Vazirmatn", Arial, sans-serif;
   }
+
+.group:hover .group-hover\:scale-x-100 {
+    transform: scaleX(1);
+  }
+  
