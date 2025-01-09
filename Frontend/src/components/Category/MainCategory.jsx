@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { IoIosArrowBack } from "react-icons/io";
 const MainCategory = ({categories , handleMouseLeave , handleMouseEnter}) => {
   return (
     <div className=''>
@@ -8,13 +8,14 @@ const MainCategory = ({categories , handleMouseLeave , handleMouseEnter}) => {
           {categories.map((category, index) => (
             <li
               key={index}
-              className="rounded-md cursor-pointer"
+              className=" flex justify-between hover:bg-gray-100 items-center cursor-pointer"
               onMouseEnter={() => handleMouseEnter(category)}
               onMouseLeave={handleMouseLeave}
             >
-              <h4 className="text-md font-medium px-3 py-2 hover:bg-gray-100 hover:text-red-600">
+              <h4 className="text-md font-medium px-3 pl-3 py-2  hover:text-red-600">
                 {category.name}
               </h4>
+              <span><IoIosArrowBack /></span>
             </li>
           ))}
         </ul>

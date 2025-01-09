@@ -1,9 +1,11 @@
+// Navbar.js
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { MdMenu, MdClose } from "react-icons/md";
 import { FaMale, FaFemale, FaChild } from "react-icons/fa";
 import { TfiMenuAlt } from "react-icons/tfi";
-import Category from "../Category/Categoty";
+import Category from "../Category/Category";
+import Backdrop from "../BackDrop"; // وارد کردن کامپوننت بک‌دراپ
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -51,15 +53,6 @@ const Navbar = () => {
     { to: "/sale", label: "حراج", icon: <FaChild /> },
   ];
 
-  // Prevent page scrolling when category is open
-  useEffect(() => {
-    if (showCategory) {
-      document.body.style.overflow = "hidden"; // Disable scroll
-    } else {
-      document.body.style.overflow = "auto"; // Enable scroll
-    }
-  }, [showCategory]);
-
   return (
     <nav
       className={`w-full z-30 transition-all   border-b-2 duration-500 ${
@@ -98,37 +91,37 @@ const Navbar = () => {
 
             {/* Categories Component */}
             {showCategory && (
-              <div
-                className="absolute top-8 border-gray-200 rounded-md right-0 w-[1000px] overflow-y-scroll bg-gray-100  h-[500px] border z-50"
-                style={{
-                  direction: "ltr",
-                }}
-              >
+              <>
+                <Backdrop onClick={() => setShowCategory(false)} /> {/* نمایش بک‌دراپ */}
                 <div
+                  className="absolute top-8 border-gray-200 rounded-md right-0 w-[1000px] overflow-y-scroll bg-gray-100 h-[500px] border z-50"
                   style={{
-                    direction: "rtl",
+                    direction: "ltr",
                   }}
                 >
-                  <Category />
+                  <div
+                    style={{
+                      direction: "rtl",
+                    }}
+                  >
+                    <Category />
+                  </div>
                 </div>
-              </div>
+              </>
             )}
           </div>
 
           {/* Navbar Items */}
-          <ul className="lg:flex lg:gap-8  lg:p-0 space-y-4 lg:space-y-0">
+          <ul className="lg:flex lg:gap-8 lg:p-0 space-y-4 lg:space-y-0">
             {navItems.map((item) => (
-              <li
-                key={item.to}
-                className="flex relative group items-center justify-center gap-2"
-              >
+              <li key={item.to} className="flex relative group items-center justify-center gap-2">
                 <Link
                   to={item.to}
                   className="text-gray-600 transition-colors duration-300 flex items-center gap-2"
                 >
                   <span>{item.label}</span>
                 </Link>
-                <span className="absolute -bottom-2 -translate-x-1/2   origin-center scale-x-0   group-hover:scale-x-125 left-1/2 h-0.5 rounded-lg w-0 bg-red-700 transition-transform  duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-2 -translate-x-1/2 origin-center scale-x-0 group-hover:scale-x-125 left-1/2 h-0.5 rounded-lg w-0 bg-red-700 transition-transform duration-300 group-hover:w-full"></span>
               </li>
             ))}
           </ul>
