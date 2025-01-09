@@ -2,17 +2,17 @@ import React from 'react'
 
 const MainCategory = ({categories , handleMouseLeave , handleMouseEnter}) => {
   return (
-    <div className=''>
-      <h3 className="text-lg font-semibold mb-4">Fashion Categories</h3>
-        <ul className="space-y-4">
+    <div className='py-4'>
+      <h3 className="text-lg font-semibold px-3">Fashion Categories</h3>
+        <ul className="">
           {categories.map((category, index) => (
             <li
               key={index}
-              className="border-b pb-2 cursor-pointer"
+              className="rounded-md cursor-pointer"
               onMouseEnter={() => handleMouseEnter(category)}
               onMouseLeave={handleMouseLeave}
             >
-              <h4 className="text-md font-medium hover:text-blue-600">
+              <h4 className="text-md font-medium px-3 py-2 hover:bg-gray-100 hover:text-red-600">
                 {category.name}
               </h4>
             </li>

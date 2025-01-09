@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MainCategory from "./MainCategory";
 import SubCategories from "./SubCategories";
-import { FaMale, FaFemale, FaBabyCarriage, FaRegHandshake, FaBook, FaCouch, FaMobileAlt, FaDumbbell, FaPerfume } from 'react-icons/fa';
 
 const Category = () => {
     const categories = [
@@ -93,7 +92,7 @@ const Category = () => {
         },
       ];
       
-  const [hoveredCategory, setHoveredCategory] = useState(null);
+  const [hoveredCategory, setHoveredCategory] = useState(categories[0]);
 
   const handleMouseEnter = (category) => {
     setHoveredCategory(category);
@@ -109,10 +108,8 @@ const Category = () => {
     <div className="flex max-h-full gap-x-5">
       {/* Categories List */}
       <div
-        style={{
-          direction: "ltr",
-        }}
-        className="w-[25%] h-full "
+      
+        className="w-[25%] h-full bg-white "
       >
         <MainCategory
           categories={categories}
