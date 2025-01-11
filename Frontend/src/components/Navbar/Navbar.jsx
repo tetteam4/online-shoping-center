@@ -12,6 +12,8 @@ const Navbar = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [showCategory, setShowCategory] = useState(false);
 
+  const [activeMenu, setActiveMenu] = useState(null); // Tracks the active mega menu
+
   // Toggle mobile menu
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
@@ -54,13 +56,13 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`w-full z-30 transition-all   border-b-2 duration-500 ${
+      className={`w-full z-30 transition-all    border-b-2 duration-500 ${
         isScrolled
-          ? "sticky top-20 bg-white border-b-2 border-gray-800 shadow-md"
+          ? "sticky top-20 bg-white  border-b-2 border-gray-800 shadow-md"
           : "fixed top-20 bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 py-2 flex justify-between items-center">
+      <div className="container relative mx-auto px-4 py-2 flex justify-between items-center">
         {/* Mobile Menu Button */}
         <div className="lg:hidden">
           <button onClick={toggleMenu} className="focus:outline-none text-3xl">
@@ -91,7 +93,6 @@ const Navbar = () => {
             {/* Categories Component */}
             {showCategory && (
               <>
-                
                 <div
                   className="absolute top-8 border-gray-200 rounded-md right-0 w-[1000px]  bg-gray-100 h-[500px] border z-50"
                   style={{
@@ -111,19 +112,103 @@ const Navbar = () => {
           </div>
 
           {/* Navbar Items */}
-          <ul className="lg:flex lg:gap-8 lg:p-0 space-y-4 lg:space-y-0">
-            {navItems.map((item) => (
-              <li key={item.to} className="flex relative group items-center justify-center gap-2">
-                <Link
-                  to={item.to}
-                  className="text-gray-600 transition-colors duration-300 flex items-center gap-2"
+          <div
+            className={`absolute lg:static -top-2 left-0  right-0 lg:flex lg:bg-transparent lg:translate-x-0 transform ${
+              menuOpen ? "translate-x-0" : "-translate-x-full"
+            } transition-transform duration-300 lg:items-center`}
+          >
+            <ul className="lg:flex lg:gap-8 lg:p-0 space-y-4 lg:space-y-0 relative">
+              {navItems.map((item, index) => (
+                <li
+                  key={item.to}
+                  className="relative group"
+                  onMouseEnter={() => setActiveMenu(index)}
+                  onMouseLeave={() => setActiveMenu(null)}
                 >
-                  <span>{item.label}</span>
-                </Link>
-                <span className="absolute -bottom-2 -translate-x-1/2 origin-center scale-x-0 group-hover:scale-x-125 left-1/2 h-0.5 rounded-lg w-0 bg-red-700 transition-transform duration-300 group-hover:w-full"></span>
-              </li>
-            ))}
-          </ul>
+                  <Link
+                    to={item.to}
+                    className="text-gray-600 transition-colors duration-300 flex items-center gap-2"
+                  >
+                    <span>{item.label}</span>
+                  </Link>
+
+                  {/* Mega Menu */}
+                  {activeMenu === index && (
+                    <div className="absolute top-full left-0 w-full bg-gray-100 shadow-lg rounded-md p-6 z-50">
+                      <h3 className="font-bold text-lg mb-4">
+                        Explore {item.label}
+                      </h3>
+                      <div className="grid grid-cols-3 gap-4">
+                        <div>
+                          <h4 className="font-semibold mb-2">Category 1</h4>
+                          <ul>
+                            <li>
+                              <Link
+                                to="#"
+                                className="text-sm hover:text-blue-500"
+                              >
+                                Sub-item 1
+                              </Link>
+                            </li>
+                            <li>
+                              <Link
+                                to="#"
+                                className="text-sm hover:text-blue-500"
+                              >
+                                Sub-item 2
+                              </Link>
+                            </li>
+                          </ul>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-2">Category 2</h4>
+                          <ul>
+                            <li>
+                              <Link
+                                to="#"
+                                className="text-sm hover:text-blue-500"
+                              >
+                                Sub-item 3
+                              </Link>
+                            </li>
+                            <li>
+                              <Link
+                                to="#"
+                                className="text-sm hover:text-blue-500"
+                              >
+                                Sub-item 4
+                              </Link>
+                            </li>
+                          </ul>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold mb-2">Category 3</h4>
+                          <ul>
+                            <li>
+                              <Link
+                                to="#"
+                                className="text-sm hover:text-blue-500"
+                              >
+                                Sub-item 5
+                              </Link>
+                            </li>
+                            <li>
+                              <Link
+                                to="#"
+                                className="text-sm hover:text-blue-500"
+                              >
+                                Sub-item 6
+                              </Link>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
