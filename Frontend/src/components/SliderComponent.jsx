@@ -3,7 +3,7 @@ import "swiper/css"; // Core Swiper styles
 import "swiper/css/navigation"; // Navigation module styles
 import "swiper/css/pagination"; // Pagination module styles
 
-// Import modules from 'swiper/modules'
+
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 
 

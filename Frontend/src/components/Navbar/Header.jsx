@@ -40,7 +40,7 @@ const Header = () => {
         </div>
 
         <div className="flex items-center justify-end gap-x-5">
-          {/* Sign In / Sign Up Buttons */}
+        
           <div className="flex items-center bg-gray-50 hover:bg-gray-100 rounded-lg border p-2 ">
             <span><TbLogin className="text-gray-700" size={24} /></span>
             <Link
@@ -58,7 +58,7 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* Cart Icon */}
+      
           <div className="relative ml-4">
             <Link to="/card" className="text-gray-600 hover:text-blue-500 focus:outline-none">
               <TfiShoppingCart size={30} />

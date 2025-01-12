@@ -6,7 +6,7 @@ const Home = () => {
     <div className="container min-h-screen mx-auto mt-6 text-center">
       <h1 className="text-3xl font-bold">Welcome to ShopMate</h1>
       <p className="mt-4 text-gray-600">
-        Discover the best deals and products!
+        Discover the best deals and !
       </p>
       {/* <SliderComponent /> */}
     </div>

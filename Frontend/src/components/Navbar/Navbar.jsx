@@ -31,7 +31,7 @@ const Navbar = () => {
     };
   }, []);
 
-  // Handle delayed hover effect
+  
   useEffect(() => {
     let timeout;
     if (isHovered) {
@@ -43,7 +43,7 @@ const Navbar = () => {
     return () => clearTimeout(timeout); // Cleanup timeout
   }, [isHovered]);
 
-  // List of navbar items
+ 
   const navItems = [
     { to: "/men", label: "مد فشن مردانه", icon: <FaMale /> },
     { to: "/women", label: "مد فشن زنانه", icon: <FaFemale /> },
@@ -76,7 +76,7 @@ const Navbar = () => {
             menuOpen ? "translate-x-0" : "-translate-x-full"
           } transition-transform duration-300 lg:items-center`}
         >
-          {/* دسته‌بندی کالاها Section */}
+        
           <div
             className="relative"
             onMouseEnter={() => setIsHovered(true)}
